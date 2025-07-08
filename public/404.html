@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // GitHub Pages SPA redirect
+      // This script takes the current URL and redirects to the index.html page
+      // with the full path after the domain as a query parameter
+      var pathSegmentsToKeep = 1;
+      var l = window.location;
+      
+      // Get the path after the base URL
+      var pathSegments = l.pathname.split('/').slice(1);
+      
+      // If we have more segments than we want to keep, redirect
+      if (pathSegments.length > pathSegmentsToKeep) {
+        // Remove the base path segment and reconstruct the path
+        var redirectPath = '/' + pathSegments.slice(pathSegmentsToKeep).join('/');
+        l.replace(
+          l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+          '/' + pathSegments.slice(0, pathSegmentsToKeep).join('/') + '/' +
+          '?p=' + encodeURIComponent(redirectPath) +
+          (l.search ? '&q=' + encodeURIComponent(l.search.slice(1)) : '') +
+          l.hash
+        );
+      }
+    </script>
+  </head>
+  <body>
+    <p>Redirecting...</p>
+  </body>
+</html> 
